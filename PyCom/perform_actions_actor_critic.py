@@ -9,6 +9,20 @@ from Utils.agents import *
 from Utils.models import *
 from Utils.tools import *
 
+
+batch_size = 128
+n_episodes = 10000
+n_batches_train = 1
+exp_replay_buffer_size = 200000
+epsilon_decay = 0.9925
+epsilon = 1
+epsilon_final = 0.1
+plot_every_n = 10
+save_every_n = 100
+tau = 0.001
+gamma = 0.99
+
+
 logging.basicConfig(level=logging.DEBUG)
 
 # Configuration
@@ -47,26 +61,12 @@ try:
 
     list_rewards = []
 
-    # Hyperparameters
-    batch_size = 128  # Size of the batch to train the neural networks
-    n_episodes = 10000 # Number of episodes to run when training the agent
-    n_batches_train = 1 # Number of times to train for each time step
-    exp_replay_buffer_size = int(2e5) # Experience replay buffer size
-    epsilon_decay = 0.9925 # Decay of the exploration constant
-    epsilon = 1 # Initial value of the exploration constant
-    epsilon_final = 0.1 # Final value of the exploration constant
-    plot_every_n = 10 # Period to update the rewards chart
-    save_every_n = 100 # Period to save the model if an improvement has been found
-    tau = 0.001 # Parameter that controls how fast the local networks update the target networks
-    gamma = 0.99 # Discount factor
-
-    # Initializing the agent
+    # Initializing the agent network
     agent = DDPGAgent(Critic, Actor, state_size=state_size, action_size=action_size, 
                     tau=tau, gamma=gamma, batch_size=batch_size, buffer_size=exp_replay_buffer_size,
                     num_batches=n_batches_train)
-    scores = [] 
+    
     epsilons = []
-    max_score = 0
     score_list = []
 
     # Loop over episodes
