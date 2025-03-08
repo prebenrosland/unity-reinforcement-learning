@@ -11,7 +11,7 @@ class Actor(nn.Module):
         self.bn = nn.BatchNorm1d(layer1)
         self.fc2 = nn.Linear(layer1, layer2)
         self.fc3 = nn.Linear(layer2, action_dim)
-        #self.init_weights()
+        self.init_weights()
 
     def forward(self, state):
         x = F.relu(self.fc1(state))
@@ -33,7 +33,7 @@ class Critic(nn.Module):
         self.bn = nn.BatchNorm1d(layer1)
         self.fc2 = nn.Linear(layer1 + action_dim, layer2)
         self.fc3 = nn.Linear(layer2, 1)
-        #self.init_weights()
+        self.init_weights()
 
     def forward(self, state, actions):
         x = F.relu(self.fc1(state))

@@ -16,9 +16,9 @@ n_batches_train = 1
 exp_replay_buffer_size = int(2e5)
 epsilon_decay = 0.9925
 epsilon = 1
-epsilon_final = 0.1
-tau = 0.001
-gamma = 0.99
+epsilon_limit = 0.1
+target_network_update_rate = 0.001
+discount_factor = 0.99
 
 tensorboard = SummaryWriter("runs/DDPG_Training")
 
@@ -62,7 +62,7 @@ try:
 
     # Initializing the agent network
     agent = DDPGAgent(critic=Critic, actor=Actor, state_size=state_size, action_size=action_size, 
-                    tau=tau, gamma=gamma, batch_size=batch_size, buffer_size=exp_replay_buffer_size,
+                    target_network_update_rate=target_network_update_rate, discount_factor=discount_factor, batch_size=batch_size, buffer_size=exp_replay_buffer_size,
                     num_batches=n_batches_train)
     
     epsilons = []
@@ -71,7 +71,7 @@ try:
     # Loop over episodes
     for episode in range(n_episodes):
         epsilons.append(epsilon)
-        epsilon = epsilon_decay * epsilon + (1 - epsilon_decay) * epsilon_final
+        epsilon = epsilon_decay * epsilon + (1 - epsilon_decay) * epsilon_limit
 
         # Reset environment
         env.reset()

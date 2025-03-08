@@ -8,7 +8,7 @@ from .tools import *
 
 
 class DDPGAgent():
-    def __init__(self, critic, actor, state_size, action_size, tau, gamma, buffer_size, batch_size, num_batches, alpha=0):
+    def __init__(self, critic, actor, state_size, action_size, target_network_update_rate, discount_factor, buffer_size, batch_size, num_batches, alpha=0):
         
         self.critic = critic(state_size, action_size)
         self.critic_target = critic(state_size, action_size)
@@ -27,12 +27,12 @@ class DDPGAgent():
         self.replay_buffer = ReplayBuffer(buffer_size)
 
         self.alpha = alpha
-        self.tau = tau
-        self.gamma = gamma
+        self.target_network_update_rate = target_network_update_rate
+        self.gamma = discount_factor
 
         self.noise = OUNoise(action_size)
 
-        self._soft_target_update(tau=1)
+        self._target_update(target_network_update_rate=1)
         
 
     def step(self, states, actions, rewards, next_states, done):
@@ -50,7 +50,7 @@ class DDPGAgent():
             if self.replay_buffer.length() > self.batch_size:
                 self.update_actor(states_batch)
                 self.update_critic(states_batch, actions_batch, rewards_batch, next_states_batch, done_batch)
-                self._soft_target_update(self.tau)
+                self._target_update(self.target_network_update_rate)
 
 
     def update_actor(self, states):
@@ -95,10 +95,10 @@ class DDPGAgent():
     def reset(self):
         self.noise.reset()
 
-    def _soft_target_update(self, tau=None):
-        self._update_target_network(self.critic_target, self.critic, tau)
-        self._update_target_network(self.actor_target, self.actor, tau)
+    def _target_update(self, target_network_update_rate=None):
+        self._update_target_network(self.critic_target, self.critic, target_network_update_rate)
+        self._update_target_network(self.actor_target, self.actor, target_network_update_rate)
 
-    def _update_target_network(self, target_network, local_network, tau):
+    def _update_target_network(self, target_network, local_network, target_network_update_rate):
         for target_param, local_param in zip(target_network.parameters(), local_network.parameters()):
-            target_param.data.copy_((1.0 - tau) * target_param.data + tau * local_param.data)
+            target_param.data.copy_((1.0 - target_network_update_rate) * target_param.data + target_network_update_rate * local_param.data)
