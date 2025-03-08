@@ -3,7 +3,7 @@ import numpy as np
 from mlagents_envs.environment import UnityEnvironment
 from mlagents_envs.side_channel.engine_configuration_channel import EngineConfigurationChannel
 from mlagents_envs.base_env import ActionTuple
-from torch.utils.tensorboard import SummaryWriter
+from agents import *
 
 from Utils.agents import *
 from Utils.models import *
@@ -11,7 +11,7 @@ from Utils.tools import *
 
 
 batch_size = 128
-n_episodes = 10000
+n_episodes = 100
 n_batches_train = 1
 exp_replay_buffer_size = int(2e5)
 epsilon_decay = 0.9925
@@ -20,7 +20,6 @@ epsilon_final = 0.1
 tau = 0.001
 gamma = 0.99
 
-tensorboard = SummaryWriter("runs/DDPG_Training")
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -65,13 +64,17 @@ try:
                     tau=tau, gamma=gamma, batch_size=batch_size, buffer_size=exp_replay_buffer_size,
                     num_batches=n_batches_train)
     
+    agent.actor.load_state_dict(torch.load('Weights/checkpoint_actor.pth'))
+    agent.actor_target.load_state_dict(torch.load('Weights/checkpoint_target_actor.pth'))
+    agent.critic.load_state_dict(torch.load('Weights/checkpoint_critic.pth'))
+    agent.critic_target.load_state_dict(torch.load('Weights/checkpoint_target_critic.pth'))
+    
     epsilons = []
     score_list = []
 
     # Loop over episodes
     for episode in range(n_episodes):
-        epsilons.append(epsilon)
-        epsilon = epsilon_decay * epsilon + (1 - epsilon_decay) * epsilon_final
+        logging.info(f"Starting episode {episode+1}/{n_episodes}")
 
         # Reset environment
         env.reset()
@@ -81,23 +84,17 @@ try:
         step = 0
         done = [False]  # Track episode termination
 
-
         while not any(done):
             step += 1
-            # Agent takes action
             action = agent.act(state, epsilon=epsilon)
 
-            # Create ActionTuple
             action_tuple = ActionTuple(continuous=action)
 
-            # Set actions and step
             env.set_actions(behavior_name, action_tuple)
             env.step()
 
-            # Get updated steps
             new_decision_steps, new_terminal_steps = env.get_steps(behavior_name)
 
-            # Check termination
             if len(new_terminal_steps) > 0:
                 next_state = new_terminal_steps.obs[0]
                 reward = new_terminal_steps.reward
@@ -107,27 +104,11 @@ try:
                 reward = new_decision_steps.reward
                 done = [False]
 
-            # Update agent
-            agent.step(state, action, reward, next_state, done)
-
-            # Update state and score
             state = next_state
             score += np.sum(reward)
 
         score_list.append(score)
-        tensorboard.add_scalar('Score per Episode', score, episode)
-        tensorboard.add_scalar('Epsilon', epsilon, episode)
-
-        if (episode + 1) % 10 == 0:
-            logging.info(f'\n----- Episode : {episode + 1} ----- Average score : {np.mean(score_list)}, ----- Standard deviation : {np.std(score_list)} -----\n')
-            score_list = []
-
-        if score > 100:
-            torch.save(agent.critic.state_dict(), 'checkpoint_critic_local.pth')
-            torch.save(agent.critic_target.state_dict(), 'checkpoint_critic_target.pth')
-            torch.save(agent.actor.state_dict(), 'checkpoint_actor_local.pth')
-            torch.save(agent.actor_target.state_dict(), 'checkpoint_actor_target.pth')
-        
+        logging.info(f"Episode {episode+1} finished with score: {score}")
 
 except Exception as e:
     logging.error(f"An error occurred: {e}")

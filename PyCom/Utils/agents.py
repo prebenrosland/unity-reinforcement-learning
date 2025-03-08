@@ -12,11 +12,11 @@ class DDPGAgent():
         
         self.critic = critic(state_size, action_size)
         self.critic_target = critic(state_size, action_size)
-        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=0.0005)
+        self.critic_optimizer = optim.Adam(self.critic.parameters(), lr=2e-4)
 
         self.actor = actor(state_size, action_size)
         self.actor_target = actor(state_size, action_size)
-        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=0.0005)
+        self.actor_optimizer = optim.Adam(self.actor.parameters(), lr=2e-4)
 
         self.state_size = state_size
         self.action_size = action_size
@@ -35,7 +35,7 @@ class DDPGAgent():
         self._soft_target_update(tau=1)
         
 
-    def step(self, states, actions, rewards, next_states, done, epsilon=1):
+    def step(self, states, actions, rewards, next_states, done):
         for s, a, r, ns, d in zip(states, actions, rewards, next_states, done):
             self.replay_buffer.append([s, a, r, ns, d])
         
@@ -47,9 +47,10 @@ class DDPGAgent():
             
             rewards_batch -= effort * self.alpha
 
-            if self.replay_buffer.length() > self.buffer_size:
+            if self.replay_buffer.length() > self.batch_size:
                 self.update_actor(states_batch)
                 self.update_critic(states_batch, actions_batch, rewards_batch, next_states_batch, done_batch)
+                self._soft_target_update(self.tau)
 
 
     def update_actor(self, states):
@@ -60,6 +61,7 @@ class DDPGAgent():
         self.actor_optimizer.zero_grad()
         loss.backward()
         self.actor_optimizer.step()
+        
 
     def update_critic(self, states, actions, rewards, next_states, done):
         actor_actions = self.actor_target.forward(next_states)
