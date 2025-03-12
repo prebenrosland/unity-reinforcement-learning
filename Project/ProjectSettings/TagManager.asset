@@ -30,15 +30,16 @@ TagManager:
   - purpleAgent
   - purpleGoal
   - tile
+  - checkpoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
+  - Wall
+  - checkpoint
   - invisible
   - 
   - 
