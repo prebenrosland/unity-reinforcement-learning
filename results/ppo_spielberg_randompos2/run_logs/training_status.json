@@ -1,0 +1,65 @@
+{
+    "Control": {
+        "checkpoints": [
+            {
+                "steps": 1999895,
+                "file_path": "results\\ppo_spielberg_randompos2\\Control\\Control-1999895.onnx",
+                "reward": 6259.251123046875,
+                "creation_time": 1743217550.6400566,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos2\\Control\\Control-1999895.pt"
+                ]
+            },
+            {
+                "steps": 2499882,
+                "file_path": "results\\ppo_spielberg_randompos2\\Control\\Control-2499882.onnx",
+                "reward": 3794.2157978258633,
+                "creation_time": 1743219689.776766,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos2\\Control\\Control-2499882.pt"
+                ]
+            },
+            {
+                "steps": 2999588,
+                "file_path": "results\\ppo_spielberg_randompos2\\Control\\Control-2999588.onnx",
+                "reward": 4605.407424926758,
+                "creation_time": 1743221839.9187953,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos2\\Control\\Control-2999588.pt"
+                ]
+            },
+            {
+                "steps": 3499946,
+                "file_path": "results\\ppo_spielberg_randompos2\\Control\\Control-3499946.onnx",
+                "reward": 4258.510148093814,
+                "creation_time": 1743223978.3377118,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos2\\Control\\Control-3499946.pt"
+                ]
+            },
+            {
+                "steps": 3600549,
+                "file_path": "results\\ppo_spielberg_randompos2\\Control\\Control-3600549.onnx",
+                "reward": null,
+                "creation_time": 1743224409.7241921,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos2\\Control\\Control-3600549.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3600549,
+            "file_path": "results\\ppo_spielberg_randompos2\\Control.onnx",
+            "reward": null,
+            "creation_time": 1743224409.7241921,
+            "auxillary_file_paths": [
+                "results\\ppo_spielberg_randompos2\\Control\\Control-3600549.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.6.0+cpu"
+    }
+}

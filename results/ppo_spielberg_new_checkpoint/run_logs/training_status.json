@@ -1,0 +1,65 @@
+{
+    "Control": {
+        "checkpoints": [
+            {
+                "steps": 1999555,
+                "file_path": "results\\ppo_spielberg_new_checkpoint\\Control\\Control-1999555.onnx",
+                "reward": 3866.851663890638,
+                "creation_time": 1743256017.013327,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_new_checkpoint\\Control\\Control-1999555.pt"
+                ]
+            },
+            {
+                "steps": 2499506,
+                "file_path": "results\\ppo_spielberg_new_checkpoint\\Control\\Control-2499506.onnx",
+                "reward": -23.100000381469727,
+                "creation_time": 1743258145.219996,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_new_checkpoint\\Control\\Control-2499506.pt"
+                ]
+            },
+            {
+                "steps": 2999576,
+                "file_path": "results\\ppo_spielberg_new_checkpoint\\Control\\Control-2999576.onnx",
+                "reward": 3581.879183919806,
+                "creation_time": 1743260291.2422838,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_new_checkpoint\\Control\\Control-2999576.pt"
+                ]
+            },
+            {
+                "steps": 3499780,
+                "file_path": "results\\ppo_spielberg_new_checkpoint\\Control\\Control-3499780.onnx",
+                "reward": 4028.6585742950438,
+                "creation_time": 1743262453.4456387,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_new_checkpoint\\Control\\Control-3499780.pt"
+                ]
+            },
+            {
+                "steps": 3600030,
+                "file_path": "results\\ppo_spielberg_new_checkpoint\\Control\\Control-3600030.onnx",
+                "reward": 3497.29296875,
+                "creation_time": 1743262878.19049,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_new_checkpoint\\Control\\Control-3600030.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3600030,
+            "file_path": "results\\ppo_spielberg_new_checkpoint\\Control.onnx",
+            "reward": 3497.29296875,
+            "creation_time": 1743262878.19049,
+            "auxillary_file_paths": [
+                "results\\ppo_spielberg_new_checkpoint\\Control\\Control-3600030.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.6.0+cpu"
+    }
+}

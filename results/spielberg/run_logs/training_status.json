@@ -1,0 +1,65 @@
+{
+    "Control": {
+        "checkpoints": [
+            {
+                "steps": 1999999,
+                "file_path": "results\\spielberg\\Control\\Control-1999999.onnx",
+                "reward": 3151.221664428711,
+                "creation_time": 1741988200.7491019,
+                "auxillary_file_paths": [
+                    "results\\spielberg\\Control\\Control-1999999.pt"
+                ]
+            },
+            {
+                "steps": 2499994,
+                "file_path": "results\\spielberg\\Control\\Control-2499994.onnx",
+                "reward": 4163.629150390625,
+                "creation_time": 1741990431.128638,
+                "auxillary_file_paths": [
+                    "results\\spielberg\\Control\\Control-2499994.pt"
+                ]
+            },
+            {
+                "steps": 2999566,
+                "file_path": "results\\spielberg\\Control\\Control-2999566.onnx",
+                "reward": 3836.5819498697915,
+                "creation_time": 1741992625.4590807,
+                "auxillary_file_paths": [
+                    "results\\spielberg\\Control\\Control-2999566.pt"
+                ]
+            },
+            {
+                "steps": 3499640,
+                "file_path": "results\\spielberg\\Control\\Control-3499640.onnx",
+                "reward": 4474.3893963849105,
+                "creation_time": 1741994852.1330674,
+                "auxillary_file_paths": [
+                    "results\\spielberg\\Control\\Control-3499640.pt"
+                ]
+            },
+            {
+                "steps": 3600218,
+                "file_path": "results\\spielberg\\Control\\Control-3600218.onnx",
+                "reward": 4545.724609375,
+                "creation_time": 1741995309.053849,
+                "auxillary_file_paths": [
+                    "results\\spielberg\\Control\\Control-3600218.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3600218,
+            "file_path": "results\\spielberg\\Control.onnx",
+            "reward": 4545.724609375,
+            "creation_time": 1741995309.053849,
+            "auxillary_file_paths": [
+                "results\\spielberg\\Control\\Control-3600218.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.6.0+cpu"
+    }
+}

@@ -16,7 +16,7 @@ n_batches_train = 1
 exp_replay_buffer_size = int(2e5)
 epsilon_decay = 0.9925
 epsilon = 1
-epsilon_final = 0.1
+epsilon_final = 1
 tau = 0.001
 gamma = 0.99
 

@@ -1,0 +1,29 @@
+{
+    "Control": {
+        "checkpoints": [
+            {
+                "steps": 161299,
+                "file_path": "results\\sac_spielberg_3\\Control\\Control-161299.onnx",
+                "reward": null,
+                "creation_time": 1742681686.9185286,
+                "auxillary_file_paths": [
+                    "results\\sac_spielberg_3\\Control\\Control-161299.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 161299,
+            "file_path": "results\\sac_spielberg_3\\Control.onnx",
+            "reward": null,
+            "creation_time": 1742681686.9185286,
+            "auxillary_file_paths": [
+                "results\\sac_spielberg_3\\Control\\Control-161299.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.6.0+cpu"
+    }
+}

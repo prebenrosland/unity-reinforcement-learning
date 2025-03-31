@@ -47,7 +47,7 @@ try:
     logging.info(f"Discrete Action Size: {discrete_action_size}")
 
     # Main interaction loop
-    run_episodes(env, behavior_name, continuous_action_size, discrete_action_size)
+    run_episodes_randomly(env, behavior_name, continuous_action_size, discrete_action_size)
 
 except Exception as e:
     logging.error(f"Connection error: {e}")

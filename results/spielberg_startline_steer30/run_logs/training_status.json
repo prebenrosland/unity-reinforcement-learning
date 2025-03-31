@@ -1,0 +1,65 @@
+{
+    "Control": {
+        "checkpoints": [
+            {
+                "steps": 1999624,
+                "file_path": "results\\spielberg_startline_steer30\\Control\\Control-1999624.onnx",
+                "reward": 5137.877331542969,
+                "creation_time": 1742010780.9110577,
+                "auxillary_file_paths": [
+                    "results\\spielberg_startline_steer30\\Control\\Control-1999624.pt"
+                ]
+            },
+            {
+                "steps": 2499609,
+                "file_path": "results\\spielberg_startline_steer30\\Control\\Control-2499609.onnx",
+                "reward": 4311.807222723961,
+                "creation_time": 1742012889.182884,
+                "auxillary_file_paths": [
+                    "results\\spielberg_startline_steer30\\Control\\Control-2499609.pt"
+                ]
+            },
+            {
+                "steps": 2999832,
+                "file_path": "results\\spielberg_startline_steer30\\Control\\Control-2999832.onnx",
+                "reward": 3921.7944290854716,
+                "creation_time": 1742015005.9622908,
+                "auxillary_file_paths": [
+                    "results\\spielberg_startline_steer30\\Control\\Control-2999832.pt"
+                ]
+            },
+            {
+                "steps": 3499975,
+                "file_path": "results\\spielberg_startline_steer30\\Control\\Control-3499975.onnx",
+                "reward": 4206.857934633891,
+                "creation_time": 1742017121.9040737,
+                "auxillary_file_paths": [
+                    "results\\spielberg_startline_steer30\\Control\\Control-3499975.pt"
+                ]
+            },
+            {
+                "steps": 3600051,
+                "file_path": "results\\spielberg_startline_steer30\\Control\\Control-3600051.onnx",
+                "reward": 3976.2264466285706,
+                "creation_time": 1742017544.5154922,
+                "auxillary_file_paths": [
+                    "results\\spielberg_startline_steer30\\Control\\Control-3600051.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3600051,
+            "file_path": "results\\spielberg_startline_steer30\\Control.onnx",
+            "reward": 3976.2264466285706,
+            "creation_time": 1742017544.5154922,
+            "auxillary_file_paths": [
+                "results\\spielberg_startline_steer30\\Control\\Control-3600051.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.6.0+cpu"
+    }
+}

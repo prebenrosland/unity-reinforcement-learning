@@ -1,0 +1,56 @@
+{
+    "Control": {
+        "checkpoints": [
+            {
+                "steps": 499878,
+                "file_path": "results\\ppo_spielberg_randompos\\Control\\Control-499878.onnx",
+                "reward": null,
+                "creation_time": 1743200631.6728816,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos\\Control\\Control-499878.pt"
+                ]
+            },
+            {
+                "steps": 999801,
+                "file_path": "results\\ppo_spielberg_randompos\\Control\\Control-999801.onnx",
+                "reward": 4089.344337864926,
+                "creation_time": 1743203020.523117,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos\\Control\\Control-999801.pt"
+                ]
+            },
+            {
+                "steps": 1499213,
+                "file_path": "results\\ppo_spielberg_randompos\\Control\\Control-1499213.onnx",
+                "reward": 3811.2790201505027,
+                "creation_time": 1743205406.106694,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos\\Control\\Control-1499213.pt"
+                ]
+            },
+            {
+                "steps": 1971377,
+                "file_path": "results\\ppo_spielberg_randompos\\Control\\Control-1971377.onnx",
+                "reward": 5981.72297014509,
+                "creation_time": 1743207668.0427492,
+                "auxillary_file_paths": [
+                    "results\\ppo_spielberg_randompos\\Control\\Control-1971377.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1971377,
+            "file_path": "results\\ppo_spielberg_randompos\\Control.onnx",
+            "reward": 5981.72297014509,
+            "creation_time": 1743207668.0427492,
+            "auxillary_file_paths": [
+                "results\\ppo_spielberg_randompos\\Control\\Control-1971377.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.6.0+cpu"
+    }
+}

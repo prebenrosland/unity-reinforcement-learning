@@ -67,6 +67,7 @@ try:
     
     epsilons = []
     score_list = []
+    step = 0
 
     # Loop over episodes
     for episode in range(n_episodes):
@@ -78,7 +79,6 @@ try:
         decision_steps, terminal_steps = env.get_steps(behavior_name)
         state = decision_steps.obs[0]  # Initial state
         score = 0
-        step = 0
         done = [False]  # Track episode termination
 
         while not any(done):
@@ -118,14 +118,18 @@ try:
         tensorboard.add_scalar('Score per Episode', score, episode)
         tensorboard.add_scalar('Epsilon', epsilon, episode)
 
-        logging.info(f'\n----- Episode : {episode + 1} ----- Average score : {score_list[0]}, ----- \n')
-        score_list = []
+        if (episode+1) % 10 == 0:
+            logging.info(f'\n----- Episode : {episode + 1} ----- Average score : {np.mean(score_list)}, ----- Step : {step} \n')
+            score_list = []
 
-        if score > 100:
+        if score > 5000:
             torch.save(agent.critic.state_dict(), 'Weights/car/checkpoint_critic.pth')
             torch.save(agent.critic_target.state_dict(), 'Weights/car/checkpoint_critic_target.pth')
             torch.save(agent.actor.state_dict(), 'Weights/car/checkpoint_actor.pth')
             torch.save(agent.actor_target.state_dict(), 'Weights/car/checkpoint_actor_target.pth')
+
+        if step >= 3600000:
+            break
         
 
 except Exception as e:

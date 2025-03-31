@@ -6,19 +6,19 @@ steps = 100
 episodes = 500
 
 
-def run_episodes(env, behavior_name, continuous_action_size, discrete_action_size):
+def run_episodes_randomly(env, behavior_name, continuous_action_size, discrete_action_size):
     # Run for x episodes
     for episode in range(episodes):
 
-        # Resetting the nvironment for each episode
+        # Resetting the environment for each episode
         env.reset()
         logging.info(f"Starting Episode {episode + 1}")
 
-        episode_reward = episode_step(100, env, behavior_name, continuous_action_size, discrete_action_size)
+        episode_reward = episode_step_randomly(100, env, behavior_name, continuous_action_size, discrete_action_size)
 
         logging.info(f"Episode {episode + 1} complete, Reward : {episode_reward}")
 
-def episode_step(steps, env, behavior_name, continuous_action_size, discrete_action_size):
+def episode_step_randomly(steps, env, behavior_name, continuous_action_size, discrete_action_size):
 
     episode_reward = 0
 
