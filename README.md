@@ -51,3 +51,9 @@ To use  built-in implementations of PPO or SAC in ML-Agents, refer to .yaml file
 ```bash
 mlagents-learn config/ppo/car.yaml --run-id=my_first_ppo_run
 ```
+
+## Analysis
+![sac_ppo](https://github.com/user-attachments/assets/318642cb-4cfc-4239-9599-d8c0847e2200)
+
+SAC converges significantly faster, however PPO ultimaltely ends up with a faster lap time.
+
