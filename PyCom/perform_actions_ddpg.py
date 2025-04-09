@@ -62,7 +62,8 @@ try:
 
     # Initializing the agent network
     agent = DDPGAgent(critic=Critic, actor=Actor, state_size=state_size, action_size=action_size, 
-                    target_network_update_rate=target_network_update_rate, discount_factor=discount_factor, batch_size=batch_size, buffer_size=exp_replay_buffer_size,
+                    target_network_update_rate=target_network_update_rate, discount_factor=discount_factor,
+                    batch_size=batch_size, buffer_size=exp_replay_buffer_size,
                     num_batches=n_batches_train)
     
     epsilons = []
@@ -77,24 +78,23 @@ try:
         # Reset environment
         env.reset()
         decision_steps, terminal_steps = env.get_steps(behavior_name)
-        state = decision_steps.obs[0]  # Initial state
+        state = decision_steps.obs[0]
         score = 0
-        done = [False]  # Track episode termination
+        done = [False]
 
         while not any(done):
             step += 1
             # Agent takes action
             action = agent.act(state, epsilon=epsilon)
 
-            # Create ActionTuple
+            # Create ActionTuple for Unity agent
             action_tuple = ActionTuple(continuous=action)
-
 
             # Set actions and step
             env.set_actions(behavior_name, action_tuple)
             env.step()
 
-            # Get updated steps
+            # Get steps
             new_decision_steps, new_terminal_steps = env.get_steps(behavior_name)
 
             # Check termination

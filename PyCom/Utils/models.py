@@ -5,7 +5,7 @@ import torch.nn.functional as F
 import torch.nn.init as init
 
 class Actor(nn.Module):
-    def __init__(self, state_dim, action_dim, layer1=128, layer2=128, layer3=128):
+    def __init__(self, state_dim, action_dim, layer1=400, layer2=300, layer3=300):
         super(Actor, self).__init__()
         self.fc1 = nn.Linear(state_dim, layer1)
         self.bn = nn.BatchNorm1d(layer1)
@@ -47,3 +47,16 @@ class Critic(nn.Module):
         init.kaiming_uniform_(self.fc1.weight, mode='fan_in', nonlinearity='relu')
         init.kaiming_uniform_(self.fc2.weight, mode='fan_in', nonlinearity='relu')
         init.uniform_(self.fc3.weight, -3e-3, 3e-3)
+
+
+class QNetwork(nn.Module):
+    def __init__(self, input_dim, layer1, layer2, output_dim):
+        super(QNetwork, self).__init__()
+        self.fc1 = nn.Linear(input_dim, layer1)
+        self.fc2 = nn.Linear(layer1, layer2)
+        self.fc3 = nn.Linear(layer2, output_dim)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        return self.fc3(x)
